@@ -12,7 +12,8 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const router = useRouter();
   const pathName = usePathname();
-  const isRoot = pathName === "/" && typeof window !== "undefined";
+
+  const isRoot = pathName === "/";
 
   return (
     <header className="fixed top-0 w-full z-50 glass-effect">

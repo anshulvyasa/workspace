@@ -1,18 +1,23 @@
+import { auth } from "@/auth";
 import { GitHubSignIn } from "@/components/auth/github-signin";
 import { GoogleSignIn } from "@/components/auth/google-signin";
 import { MagicEmailSignIn } from "@/components/auth/magic-email";
+import BackGroundDesign from "@/components/background-design/background-design";
+import Header from "@/components/my-custom-component/landing-page/header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { redirect } from "next/navigation";
 
-const SignIn = () => {
+const SignIn = async () => {
+  const session = await auth();
+
+  if (session) {
+    redirect("/home-page");
+  }
+
   return (
     <section className="min-h-screen relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 z-0" />
-      <div className="absolute left-1/4 top-1/4 w-72 h-72 rounded-full animate-float bg-primary/10 blur-3xl z-0" />
-      <div
-        className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-primary/5 blur-3xl animate-float z-0"
-        style={{ animationDelay: "2s" }}
-      />
-
+      <BackGroundDesign />
+      <Header/>
       <div className="relative z-10 flex justify-center items-center min-h-screen w-full">
         <Card className="bg-background/20  w-[90vw] max-w-sm">
           <CardHeader className="text-center -my-4">
